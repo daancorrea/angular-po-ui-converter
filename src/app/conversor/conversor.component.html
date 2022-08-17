@@ -1,0 +1,39 @@
+<po-container>
+  <div class="po-row" style="justify-content: center; align-items: center;">
+    <h1 class="po-font-title">Conversor de Moedas</h1>
+    <span class="po-icon po-icon po-icon-finance po-ml-1"></span>
+  </div>
+  <form>
+    <div class="po-row po-mt-3" style="justify-content: center; align-items: center;">
+      <po-select name="select" class="po-md-6" p-placeholder="Real" p-label="Converter de:" [p-disabled]="true">
+      </po-select>
+    </div>
+    <div class="po-row po-mt-3" style="justify-content: center; align-items: center;">
+      <po-multiselect class="po-md-6" p-label="Converter para:" name="currencyValues" #event [p-options]="options"
+        p-placeholder="Escolha uma moeda">
+      </po-multiselect>
+    </div>
+    <div class="po-row po-mt-3" style="justify-content:center;">
+      <po-number class="po-md-6" name="input" p-label="Valor:" p-placeholder="Digite o valor a ser convertido"
+        (p-change-model)="onInputChange($event)" p-clean>
+      </po-number>
+    </div>
+    <div class="po-row po-mt-3" style="justify-content:center;">
+      <po-button class="po-md-4 po-mb-3" name="converter" p-label="Converter" (p-click)="changeOptions(event)">
+      </po-button>
+    </div>
+  </form>
+  <div class="po-row" *ngFor="let currencyValue of currencyValues"
+    style="justify-content:space-around; align-items:center;">
+    <po-widget *ngIf="currencyValue == 'dolar'" class="po-lg-3 po-mb-3" style="text-align: center;">
+      <p class="po-font-text po-mb-1">Dólar</p>
+      <p class="po-font-subtitle po-mb-1">{{dollarConverted}}</p>
+      <img src="../../assets/dolar.png" alt="imagem bandeira Estados Unidos">
+    </po-widget>
+    <po-widget *ngIf="currencyValue == 'euro'" class="po-lg-3 po-mb-3" style="text-align: center;">
+      <p class="po-font-text po-mb-1">Euro</p>
+      <p class="po-font-subtitle po-mb-1">{{euroConverted}}</p>
+      <img src="../../assets/euro.png" alt="imagem bandeira Estados Unidos">
+    </po-widget>
+  </div>
+</po-container>
